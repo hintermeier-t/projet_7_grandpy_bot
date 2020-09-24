@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    </head>
+    <body>
+        <input type='email' required></input>
+<p>Ceci est un test</p>
+<script>
+    $('p').on('click',function(event){
+        var test = new Date(event.timeStamp);
+        $('p').text(test);
+    });
+</script>
+    </body>
+</html>
