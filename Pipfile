@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
+pytest = "*"
+unidecode = "*"
 
 [requires]
 python_version = "3.8"

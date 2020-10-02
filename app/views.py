@@ -6,7 +6,10 @@ app = Flask(__name__)
 @app.route('/index/')
 def index():
     return render_template('index.html',
-                            gp_image=url_for('static', filename='img/hello.png'))
+                            gp_welcome=url_for('static', filename='img/hello.png'),
+                            gp_searching=url_for('static', filename='img/searching.png'),
+                            gp_found=url_for('static', filename='img/found.png'),
+                            gp_not_found=url_for('static', filename='img/not_found.png'))
 
 @app.route('/about_me/')
 def about_me():

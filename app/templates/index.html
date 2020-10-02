@@ -1,5 +1,6 @@
 {% extends 'squelette.html' %}
 {% block content %}
+</script>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -12,8 +13,12 @@
       <div class="col-12 col-lg-4">
         <div class="card">
           <div class="card-body">
-            <img class="w-100" src="{{gp_image}}">
-            <p class="card-text">insertion et modification éventuelle d'une image de GrandPy. Formulaire en dessous</p>
+            <img class="w-100" src="{{gp_welcome}}">
+            <form onsubmit="toggle()">
+              <label for="demande">Que veux-tu ?</label>
+              <input name="demande" id="demande" type="text">
+              <input id="bouton" type="submit" value="Demander !">
+            </form>
           </div>
         </div>
       </div>
@@ -34,4 +39,5 @@
         </div>
       </div>
     </div>
+
   {% endblock %}
