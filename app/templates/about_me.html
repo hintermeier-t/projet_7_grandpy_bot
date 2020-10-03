@@ -1,26 +1,27 @@
 {% extends 'squelette.html' %}
 {% block content %}
+<header class="jumbotron" >
+  <h1>A propos du génial auteur de cette application :</h1>
+</header>
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="jumbotron">
-          <h1>Posez votre question à GrandPy !</h1>
+      <div class="row">
+        <div class="col-1">
+          <div class="card">
+            <img src="{{trombi}}"
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-lg-9">
+      <div class="col-11 col-lg-9">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">A propos de moi</h5>
+            <h5 class="card-title">A propos de moi (authentique)</h5>
             <p class="card-text">Je m'appelle Thomas Hintermeier-Saive, né en 1994, et résidant dans le Vaucluse. Je suis l'auteur de cette application, et actuellement étudiant chez OpenClassrooms pour le parcours Développeur d'Application Python. </p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-3">
+      <div class="col-11 col-lg-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Les Technologies</h5>
+            <h5 class="card-title">Le Parcours (chaotique)</h5>
             <p class="card-text">Après 2 années en classes préparatoires, et un passage en Licence Physique-Chimie, j'ai finalement opté pour l'informatique. Mais les formations étant trop généralistes, trop nébuleuses à mon goût, j'ai finit par quitter l'Université, pour me tourner vers une formation privée, dont les projets ancrés dans des contextes réalistes semblent plus valorisants. Ainsi j'en suis actuellement rendu au projet 7 : Créez GrandPy Bot, et espère que cette application vous aura plu, et surtout qu'elle fonctionnera sans problème majeur.</p>
           </div>
         </div>
