@@ -1,6 +1,8 @@
 from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
+
+
 @app.route('/')
 @app.route('/index/')
 def index():
@@ -16,6 +18,8 @@ def index():
                                 filename = 'img/not_found.png'),
                             trombi = url_for('static',
                                 filename = 'img/trombi.png'),
+                            script = url_for('static',
+                                filename = 'js/requests.js'),
                             bot_message = None)
 
 @app.route('/about_me/')
