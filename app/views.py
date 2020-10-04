@@ -1,10 +1,10 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
-
 @app.route('/')
 @app.route('/index/')
 def index():
+    user_message = request.args.get('demande')
     return render_template('index.html',
                             gp_welcome = url_for('static',
                                 filename = 'img/hello.png'),
@@ -15,7 +15,8 @@ def index():
                             gp_not_found = url_for('static',
                                 filename = 'img/not_found.png'),
                             trombi = url_for('static',
-                                filename = 'img/trombi.png'))
+                                filename = 'img/trombi.png'),
+                            bot_message = None)
 
 @app.route('/about_me/')
 def about_me():
