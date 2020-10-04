@@ -12,8 +12,8 @@
           <div class="card-body">
             <img class="w-100" src="{{gp_welcome}}">
             <form onsubmit="toggle()">
-              <label for="demande">Que veux-tu ?</label>
-              <input name="demande" id="demande" type="text">
+              <label for="ask">Que veux-tu ?</label>
+              <input name="ask" id="ask" type="text">
               <input id="bouton" type="submit" value="Demander !">
             </form>
           </div>
@@ -23,7 +23,8 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">API GOOGLE MAPS</h5>
-            <p class="card-text" id="map">cadre avec adresse demandée {{user_message}}</p>
+            <p class="card-text" id="map"><iframe src="https://www.google.com/maps/embed/v1/search?key={{map_key}}&q={{ask}}" allowfullscreen>
+            </iframe></p>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
-
 let map;
+let service;
+let infowindow;
+
 function initMap() {
   const initCenter = new google.maps.LatLng(0, 0);
   let infowindow = new google.maps.InfoWindow();

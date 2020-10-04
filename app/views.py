@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request
+from config import API_KEY
 
 app = Flask(__name__)
 
@@ -6,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index/')
 def index():
-    user_message = request.args.get('demande')
+    user_message = request.args.get('ask')
     return render_template('index.html',
                             gp_welcome = url_for('static',
                                 filename = 'img/hello.png'),
@@ -20,6 +21,8 @@ def index():
                                 filename = 'img/trombi.png'),
                             script = url_for('static',
                                 filename = 'js/requests.js'),
+                            ask = user_message,
+                            map_key = API_KEY,
                             bot_message = None)
 
 @app.route('/about_me/')
