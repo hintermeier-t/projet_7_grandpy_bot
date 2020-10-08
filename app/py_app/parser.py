@@ -31,23 +31,22 @@ class Parser:
         rawfile.close()
         self.separators = "!\"#$%&' ()*+,-./:;<=>?@[\\]^_`{|}~"
         self.string = self.parse(self.string)
-        print(self.string)
 
-    def lower_all(self,string):
+    def _lower_all(self,string):
         return string.lower()
     
-    def unmark(self, string):
+    def _unmark(self, string):
         return ''.join(char for char in string if char not in self.separators)
 
-    def deemphasize(self,string):
+    def _deemphasize(self,string):
         return unidecode.unidecode(string)
     
-    def cleanup(self, string):
+    def _cleanup(self, string):
         listing = string.split(" ")
         listing = [word for word in listing if word not in self.stop_words]
         return ' '.join(listing)
     
-    def parse(self, string):
+    def _parse(self, string):
         """
             This method will parse a sentence to get only meaningful words.
         """

@@ -16,6 +16,9 @@
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
   >
+  <link
+  rel="stylesheet"
+  href="/static/css/extra.css">
  
   
   <title>GrandPy Bot</title>
@@ -41,6 +44,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('about_me') }}">A propos de l'auteur</a>
               </li>
+              <li><img id="loading" src="../static/img/loading.png" width="20"></img></li>
             </ul>
           </div>
         </nav>
@@ -49,11 +53,6 @@
   </div>
 
   {% block content %}{% endblock %}
-  <div class="row">
-    <div class="col">
-      ---
-    </div>
-  </div>
 </div>
 <footer class="bg-dark">
   <div class="container">

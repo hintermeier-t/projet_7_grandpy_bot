@@ -1,7 +1,7 @@
 """
     Script that tests the Parser class.
 """
-from ..parser import Parser
+from ..py_app.parser import Parser
 import pytest
 
 class TestParser:
