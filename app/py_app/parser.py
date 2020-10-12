@@ -15,7 +15,7 @@ class Parser:
     :self.separators (list): a list containing every punctuation
     :self.stop_words (list): a liste containing tons of French stop words to
         remove before sending the request.
-    
+
     Methods:
     --------
     :deemphasize(self, string): remove emphased letters from the string.
@@ -29,29 +29,29 @@ class Parser:
         rawfile = open("app/static/res/stop_words.txt", 'r')
         self.stop_words = [line.split(",") for line in rawfile][0]
         rawfile.close()
-        self.separators = "!\"#$%&' ()*+,-./:;<=>?@[\\]^_`{|}~"
-        self.string = self.parse(self.string)
+        self.separators = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+        self.string = self._parse(self.string)
 
     def _lower_all(self,string):
         return string.lower()
-    
+
     def _unmark(self, string):
         return ''.join(char for char in string if char not in self.separators)
 
     def _deemphasize(self,string):
         return unidecode.unidecode(string)
-    
+
     def _cleanup(self, string):
         listing = string.split(" ")
         listing = [word for word in listing if word not in self.stop_words]
         return ' '.join(listing)
-    
+
     def _parse(self, string):
         """
             This method will parse a sentence to get only meaningful words.
         """
-        string = self.lower_all(string)
-        string = self.deemphasize(string)
-        string = self.cleanup(string)
-        string = self.unmark(string)
+        string = self._lower_all(string)
+        string = self._deemphasize(string)
+        string = self._cleanup(string)
+        string = self._unmark(string)
         return string
