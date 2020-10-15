@@ -2,7 +2,7 @@
         height: 100%;
       }
 
-@keyframes example { 
+@keyframes rotation { 
   from { 
       transform: rotate(0deg); 
   } to { 
@@ -11,6 +11,6 @@
 }
 
 #loading{
-  animation-name: example;
+  animation-name: rotation;
   animation-duration: 1s;
 }

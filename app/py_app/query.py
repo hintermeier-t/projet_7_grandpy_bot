@@ -9,10 +9,9 @@ import requests
 import googlemaps
 
 class Query:
-
     def __init__(self,query):
-
-        self.query = query
+        tmp_query = parser.Parser(query)
+        self.query = tmp_query.string
         self.address = None
         self.geocode = None
         self.wiki_decription = None
@@ -63,3 +62,7 @@ class Query:
             [page_id]['extract'])
         self.link = ('https://fr.wikipedia.org/wiki/'+str(extract_request.json()
             ['query']['pages'][page_id]['title']).replace(' ','_'))
+
+    def make_query():
+        self.maps_query()
+        self.wiki_query()
