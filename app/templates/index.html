@@ -1,41 +1,29 @@
-{% extends 'squelette.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
 <header class="jumbotron" >
       <h1>Posez votre question à GrandPy !</h1>
     </header>
   <div class="container">
-    
+
     <div class="row">
       <div class="col-12 col-lg-4">
         <div class="card">
           <div class="card-body">
             <img class="w-100" src="{{grandpy}}">
-            <form onsubmit="toggle()">
-              <label for="ask">Que veux-tu ?</label>
-              <input name="ask" id="ask" type="text">
-              <input id="bouton" type="submit" value="Demander !">
-            </form>
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 col-lg-8">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">API GOOGLE MAPS</h5>
-            <p class="card-text" id="map"><iframe src=" allowfullscreen>
-            </iframe></p>
-          </div>
+            <div id="chat" class="card-body">
+            <h5 class="card-title">Que veux tu me demander ?</h5>
+            <div id="chatBox"></div>
+              <input type="text" name="u_input" id="u_input" placeholder="Message"/>
+              <span id="waiting"></span>
+            </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Le saviez-vous ?</h5>
-            <p class="card-text">Ici sera affichée l'annecdote</p>
-          </div>
-        </div>
       </div>
-    </div>
-
+      <script src="/static/js/script.js" charset="utf-8"/>
   {% endblock %}

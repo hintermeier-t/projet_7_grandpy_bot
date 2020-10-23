@@ -1,34 +1,39 @@
-"""
-    Script that tests if a query is sent and if a response is get.
-"""
-from ..py_app.query import Query
 import requests
-#- Query test class
+from ..py_app import query as q
+class MockMaps:
+"""
+    This class will mock a JSON response from a request.
+"""
+    # mock json() method
+    @staticmethod
+    def json():
+        return {"json_key": "json_resp"}
+
+
 def test_maps_query(monkeypatch):
-    expected_result = {
-        "address": "une adresse",
-        "lat": 12.134,
-        "lng": -30.4135,
-        "error": False
-    }
 
-    class MockRequestsGet:
-        def __init__(self, url, params):
-            self.status_code = 200
+    def mock_return_m(*args, **kwargs):
+        return MockResponse()
 
-        def json(self):
-            return {
-                "candidates": [
-                    {
-                        "formatted_address": expected_result["address"],
-                        "geometry": {
-                            "location": {
-                                "lat": expected_result["lat"],
-                                "lng": expected_result["lng"]
-                            }
-                        }
-                    }
-                ]
-            }
-    monkeypatch.setattr(googlemaps, MockRequestsGet)
-    assert google_maps_downloader.find_place("question") == expected_result
+    # apply the monkeypatch for requests.get to mock_return
+    monkeypatch.setattr(requests, "get", mock_return_m)
+
+    result = q.maps_query("Openclassrooms")
+    assert result["json_key"] == "json_resp"
+
+class MockWiki:
+"""
+    This class will mock a JSON response from a request.
+"""
+    # mock json() method
+    @staticmethod
+    def json():
+        return {"json_key": "json_res
+def test_wiki_query(monkeypatch):
+
+    def mock_return_w(*args, **kwargs):
+        return MockResponse()
+
+    monkeypatch.setattr(requests, "get", mock_return_w)
+    result = q.maps_query("0|0")
+    assert result["json_key"] == "json_resp"

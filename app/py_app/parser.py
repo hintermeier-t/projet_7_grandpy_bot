@@ -30,28 +30,28 @@ class Parser:
         self.stop_words = [line.split(",") for line in rawfile][0]
         rawfile.close()
         self.separators = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-        self.string = self._parse(self.string)
+        self.string = self.parse(self.string)
 
-    def _lower_all(self,string):
+    def lower_all(self,string):
         return string.lower()
 
-    def _unmark(self, string):
+    def unmark(self, string):
         return ''.join(char for char in string if char not in self.separators)
 
-    def _deemphasize(self,string):
+    def deemphasize(self,string):
         return unidecode.unidecode(string)
 
-    def _cleanup(self, string):
+    def cleanup(self, string):
         listing = string.split(" ")
         listing = [word for word in listing if word not in self.stop_words]
         return ' '.join(listing)
 
-    def _parse(self, string):
+    def parse(self, string):
         """
             This method will parse a sentence to get only meaningful words.
         """
-        string = self._lower_all(string)
-        string = self._deemphasize(string)
-        string = self._cleanup(string)
-        string = self._unmark(string)
+        string = self.lower_all(string)
+        string = self.deemphasize(string)
+        string = self.cleanup(string)
+        string = self.unmark(string)
         return string

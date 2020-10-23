@@ -21,7 +21,7 @@ class TestParser:
     #- Remove punctuation
     def test_unmark(self):
         unmarked = self.CLEANER.unmark(self.MARKS)
-        assert unmarked == "ceciestuntestmaisdeponctuation"
+        assert unmarked == "ceci est un test mais de ponctuation "
 
     #- Remove empasis
     def test_deemphasize(self):
@@ -36,4 +36,4 @@ class TestParser:
     #- Final parsing test (Combination of all Parser class methods)
     def test_parse(self):
         parsed_sentence = self.CLEANER.parse(self.FINAL_SENTENCE)
-        assert parsed_sentence == "openclassrooms"
+        assert parsed_sentence == "openclassrooms "
