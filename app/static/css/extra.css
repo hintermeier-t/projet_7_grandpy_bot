@@ -1,5 +1,5 @@
 #map {
-   width: 100%;
+   width: 95%;
    padding: 2px;
 }
 
@@ -19,8 +19,9 @@
 
 
 .UserLine{
+  color: lightgray;
   float: right;
-  justify-content: right;
+  text-align: right;
   width: 50%;
   border-radius: 15px;
   background-color: #277375;
@@ -30,7 +31,7 @@
 
 .BotLine{
   float: left;
-  justify-content: left;
+  text-align: left;
   width: 50%;
   border-radius: 15px;
   background-color: #232c43;

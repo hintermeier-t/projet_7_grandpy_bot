@@ -22,6 +22,8 @@ def index():
                                 filename = 'js/script.js'),
                             grandpy = url_for('static',
                                 filename = 'img/grandpy_'+str(ran)+'.png'),
+                            favicon = url_for('static',
+                                    filename = 'img/bot.png'),
                             key = gmaps_key,
                             maps_result= None)
 @app.route("/request/")
