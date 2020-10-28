@@ -1,4 +1,3 @@
-//function map_loading(location)
 class Interface{
 
   constructor(){
@@ -29,7 +28,9 @@ class Interface{
       +json_output.intro
       +'</div><div class="BotLine">'
       +json_output.address
-      +'</div><div class="BotLine"><iframe id="map" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCe3J5f3mogndrirriSvsVwUj0tn2OW6nA&q=\''
+      +'</div><div class="BotLine"><iframe id="map" src="https://www.google.com/maps/embed/v1/place?key='
+      +json_output.key
+      +'&q=\''
       +json_output.address
       +'\'" width="400px" height="50%"></iframe></div><div class="BotLine">D\'ailleurs je connais tout sur cet endroit: '
       +json_output.extract+'<br><a href="'

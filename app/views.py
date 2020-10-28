@@ -24,13 +24,14 @@ def index():
                                 filename = 'img/grandpy_'+str(ran)+'.png'),
                             favicon = url_for('static',
                                     filename = 'img/bot.png'),
-                            key = gmaps_key,
-                            maps_result= None)
+                            key = gmaps_key)
+
 @app.route("/request/")
 def response():
     query = Query(request.args.get("u_input"))
     partial_answer = Answer(query.response)
     complete_answer = partial_answer.json_answers
+    complete_answer.update({'key':gmaps_key})
     return json.dumps(complete_answer)
 
 #- Optionnal pages
