@@ -1,53 +1,65 @@
-var userInput = document.getElementById("u_input");
-var waitingLogo = document.getElementByID("waiting");
-
+console.log("Hello")
 class Interface{
 
-  function loading(){
+  constructor(){
+
+}
+
+  loading(){
     //Active the loading frame
-    waitingLogo.innerHTML= '<img id="loading" src="/static/img/loading.png" width="20"></img>';
+
+    var waitingLogo = '<img id="loading" src="/static/img/loading.png" width="20"></img>';
+    var waitingLogo_html = document.createRange().createContextualFragment(waitingLogo);
+    document.getElementById("waiting").appendChild(waitingLogo_html);
        }
 
-  function stop_loading(){
+  stop_loading(){
     //Stop the loading frame
     waitingLogo.innerHTML='';
   }
 
-  function send_user_message(input){
-    this.messageLine = '<div class="UserLine">'+input+'</div>';
-    document.getElementById('chatBox').appendChild(this.messageLine);
+  send_user_message(input){
+    console.log(input);
+    this.userLine = '<div class="UserLine">'+input+'</div>';
+    this.userLine_html = document.createRange().createContextualFragment(this.userLine);
+    document.getElementById('chatBox').appendChild(this.userLine_html);
   }
 
-  function send_pybot_message(json_output){
-    this.messageLine = ('<div class="BotLine">'
+  send_pybot_message(json_output){
+    this.pybotLine = ('<div class="BotLine">'
       +json_output.intro
       +'</div><div class="BotLine">'
       +json_output.address
       +'</div><div class="BotLine">D\'ailleur je connais tout sur cet endroit:'
       +json_output.extract+'<a href="'
-      +json_output.link'">En savoir plus.</a></div>');
-    document.getElementById('chatBox').appendChild(this.messageLine)
+      +json_output.link+'">En savoir plus.</a></div>');
+    this.pybotLine_html = document.createRange().createContextualFragment(this.pybotLine);
+    document.getElementById('chatBox').appendChild(this.pybotLine_html)
   }
 }
 
+var app = new Interface();
 document.addEventListener("keypress", function(event){
   // If user presses "Enter" key :
-  var app = new Interface();
+
   if (event.keyCode == 13 ){
+    console.log("entrée")
+    var userInput = document.getElementById("u_input");
+    console.log(userInput.value)
     app.send_user_message(userInput.value)
     app.loading();
-    request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
     request.open('GET', '/request?u_input=' + userInput.value );
-  	request.send();
+  	request.send(null);
     // Once the request is sent, we reset the User Input field
     userInput.value = '';
     request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE){
-      app.stop_loading();
-    }
-    if (this.status == 200){
-      var response = JSON.parse(this.responseText);
-    }
+      if (this.readyState == XMLHttpRequest.DONE){
+        app.stop_loading();
+      }
+      if (this.status == 200){
+        var response = JSON.parse(this.responseText);
+      }
     };
     app.send_pybot_message(response);
   } // Endif
