@@ -1,10 +1,9 @@
-console.log("Hello")
+//function map_loading(location)
 class Interface{
 
   constructor(){
 
 }
-
   loading(){
     //Active the loading frame
 
@@ -15,11 +14,11 @@ class Interface{
 
   stop_loading(){
     //Stop the loading frame
-    waitingLogo.innerHTML='';
+    var stop = document.getElementById("waiting")
+    stop.removeChild(stop.childNodes[0])
   }
 
   send_user_message(input){
-    console.log(input);
     this.userLine = '<div class="UserLine">'+input+'</div>';
     this.userLine_html = document.createRange().createContextualFragment(this.userLine);
     document.getElementById('chatBox').appendChild(this.userLine_html);
@@ -30,12 +29,15 @@ class Interface{
       +json_output.intro
       +'</div><div class="BotLine">'
       +json_output.address
-      +'</div><div class="BotLine">D\'ailleur je connais tout sur cet endroit:'
-      +json_output.extract+'<a href="'
+      +'</div><div class="BotLine"><iframe id="map" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCe3J5f3mogndrirriSvsVwUj0tn2OW6nA&q=\''
+      +json_output.address
+      +'\'" width="400px" height="50%"></iframe></div><div class="BotLine">D\'ailleurs je connais tout sur cet endroit: '
+      +json_output.extract+'<br><a href="'
       +json_output.link+'">En savoir plus.</a></div>');
     this.pybotLine_html = document.createRange().createContextualFragment(this.pybotLine);
-    document.getElementById('chatBox').appendChild(this.pybotLine_html)
-  }
+    document.getElementById('chatBox').appendChild(this.pybotLine_html);
+
+    }
 }
 
 var app = new Interface();
@@ -45,7 +47,6 @@ document.addEventListener("keypress", function(event){
   if (event.keyCode == 13 ){
     console.log("entrée")
     var userInput = document.getElementById("u_input");
-    console.log(userInput.value)
     app.send_user_message(userInput.value)
     app.loading();
     var request = new XMLHttpRequest();
@@ -59,8 +60,9 @@ document.addEventListener("keypress", function(event){
       }
       if (this.status == 200){
         var response = JSON.parse(this.responseText);
+        app.send_pybot_message(response);
       }
     };
-    app.send_pybot_message(response);
+
   } // Endif
 });

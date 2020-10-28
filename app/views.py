@@ -1,6 +1,7 @@
 import os
 import random
 import dotenv
+import json
 
 from flask import Flask, render_template, url_for, request
 
@@ -16,31 +17,19 @@ gmaps_key = os.getenv("GMAPS_API_KEY")
 @app.route('/index/')
 def index():
     ran = random.randint(1,3)
-    question = request.args.get('u_input')
-    if request.args.get('u_message') is None:
-        answer = None
-        message = None
-    else:
-        message = query.Query(request.args.get('u_input'))
-        answer = message.response
-
-    data = {"user_message":question, "py_message":answer}
-
     return render_template('index.html',
                             script = url_for('static',
                                 filename = 'js/script.js'),
                             grandpy = url_for('static',
                                 filename = 'img/grandpy_'+str(ran)+'.png'),
                             key = gmaps_key,
-                            maps_result= None,
-                            data=data)
+                            maps_result= None)
 @app.route("/request/")
 def response():
-
     query = Query(request.args.get("u_input"))
     partial_answer = Answer(query.response)
-    complete_answer = str(partial_answer.construct())
-    return complete_answer
+    complete_answer = partial_answer.json_answers
+    return json.dumps(complete_answer)
 
 #- Optionnal pages
 

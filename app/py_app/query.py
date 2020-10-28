@@ -61,8 +61,9 @@ class Query:
         wiki = self.wiki_query(maps["results"][0]["geometry"]["location"])
 
         return {
+            "geocode": maps["results"][0]["geometry"]["location"],
             "address": maps["results"][0]["formatted_address"],
-            "extract": wiki["extract"],
+            "extract": wiki["extract"][:wiki["extract"].find('\n')],
             "link": ('https://fr.wikipedia.org/wiki/'
                 +str(wiki['title']).replace(' ','_'))
         }

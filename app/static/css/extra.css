@@ -1,6 +1,7 @@
-.map {
-        height: 100%;
-      }
+#map {
+   width: 1000%;
+   padding: 2px;
+}
 
 @keyframes rotation {
   from {
@@ -18,19 +19,27 @@
 
 
 .UserLine{
-  display: flex;
+  float: right;
   justify-content: right;
   width: 50%;
   border-radius: 15px;
-  background-color: lightgray;
+  background-color: #277375;
+  padding-right: 10px;
+  margin: 1px;
 }
 
 .BotLine{
-  display: flex;
+  float: left;
   justify-content: left;
   width: 50%;
   border-radius: 15px;
-  background-color: darkgray;
+  background-color: #232c43;
   color: white;
+  padding-left: 10px;
+  margin: 2px;
 
+}
+
+#u_input{
+  width: 80%;
 }
