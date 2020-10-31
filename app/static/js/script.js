@@ -1,7 +1,5 @@
 class Interface{
-
   constructor(){
-
 }
   loading(){
     //Active the loading frame
@@ -24,34 +22,34 @@ class Interface{
   }
 
   send_pybot_message(json_output){
-    this.pybotLine = ('<div class="BotLine">'
-      +json_output.intro
-      +'</div><div class="BotLine">'
-      +json_output.address
-      +'</div><div class="BotLine"><iframe id="map" src="https://www.google.com/maps/embed/v1/place?key='
-      +json_output.key
-      +'&q=\''
-      +json_output.address
-      +'\'" width="400px" height="50%"></iframe></div><div class="BotLine">D\'ailleurs je connais tout sur cet endroit: '
-      +json_output.extract+'<br><a href="'
-      +json_output.link+'">En savoir plus.</a></div>');
-    this.pybotLine_html = document.createRange().createContextualFragment(this.pybotLine);
+    this.pybotLine_html = document.createRange().createContextualFragment(
+      '<div class="BotLine">'
+        +json_output.intro
+        +'</div><div class="BotLine">'
+        +json_output.address
+        +'</div><div class="BotLine"><iframe id="map" src="https://www.google.com/maps/embed/v1/place?key='
+        +json_output.key
+        +'&q=\''
+        +json_output.address
+        +'\'" width="100%""></iframe></div><div class="BotLine">D\'ailleurs je connais tout sur cet endroit: '
+        +json_output.extract+'<br><a href="'
+        +json_output.link+'">En savoir plus.</a></div>'
+    );
     document.getElementById('chatBox').appendChild(this.pybotLine_html);
 
     }
 }
-
+//Creating an interface
 var app = new Interface();
 document.addEventListener("keypress", function(event){
   // If user presses "Enter" key :
 
-  if (event.keyCode == 13 ){
-    console.log("entrée")
+  if (event.key == "Enter" ){
     var userInput = document.getElementById("u_input");
-    app.send_user_message(userInput.value)
+    app.send_user_message(userInput.value);
     app.loading();
     var request = new XMLHttpRequest();
-    request.open('GET', '/request?u_input=' + userInput.value );
+    request.open('GET', '/request?u_input=' + userInput.value);
   	request.send(null);
     // Once the request is sent, we reset the User Input field
     userInput.value = '';
@@ -62,6 +60,10 @@ document.addEventListener("keypress", function(event){
       if (this.status == 200){
         var response = JSON.parse(this.responseText);
         app.send_pybot_message(response);
+      }
+      if (this.status != 200){
+        var pybotLine_html = document.createRange().createContextualFragment('<div class="BotLine">Désolé, je n\'ai pas compris.</div>');
+        document.getElementById('chatBox').appendChild(pybotLine_html);
       }
     };
 
