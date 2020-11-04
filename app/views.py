@@ -53,11 +53,11 @@ def about_me():
 
 
 @app.route("/about_app/")
-"""Generating About App page"""
 def about_app():
+    """Generating About App page"""
     return render_template("about_app.html")
 
 @app.errorhandler(404)
 def page_not_found(error):
-    """Handling 404 error : page not found""""
+    """Handling 404 error : page not found"""
     return render_template("error.html"), 404
