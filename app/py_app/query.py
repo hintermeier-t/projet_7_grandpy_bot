@@ -1,3 +1,4 @@
+# coding:utf-8
 #- Default modules
 import os
 import json

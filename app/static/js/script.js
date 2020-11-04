@@ -22,6 +22,7 @@ class Interface{
   }
 
   send_pybot_message(json_output){
+    console.log("envoi")
     this.pybotLine_html = document.createRange().createContextualFragment(
       '<div class="BotLine">'
         +json_output.intro
@@ -45,6 +46,7 @@ document.addEventListener("keypress", function(event){
   // If user presses "Enter" key :
 
   if (event.key == "Enter" ){
+    console.log("entrée")
     var userInput = document.getElementById("u_input");
     app.send_user_message(userInput.value);
     app.loading();
@@ -54,17 +56,20 @@ document.addEventListener("keypress", function(event){
     // Once the request is sent, we reset the User Input field
     userInput.value = '';
     request.onreadystatechange = function() {
+      console.log(this.readyState)
       if (this.readyState == XMLHttpRequest.DONE){
         app.stop_loading();
-      }
-      if (this.status == 200){
-        var response = JSON.parse(this.responseText);
-        app.send_pybot_message(response);
-      }
-      if (this.status != 200){
-        var pybotLine_html = document.createRange().createContextualFragment('<div class="BotLine">Désolé, je n\'ai pas compris.</div>');
-        document.getElementById('chatBox').appendChild(pybotLine_html);
-      }
+      
+        if (this.status == 200){
+          console.log("positif")
+          var response = JSON.parse(this.responseText);
+          app.send_pybot_message(response);
+        }
+        if (this.status != 200){
+          console.log("negatif")
+          var pybotLine_html = document.createRange().createContextualFragment('<div class="BotLine">Désolé, je n\'ai pas compris.</div>');
+          document.getElementById('chatBox').appendChild(pybotLine_html);
+        }}
     };
 
   } // Endif

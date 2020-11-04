@@ -1,3 +1,4 @@
+# coding:utf-8
 #- Import standard modules
 import random as r
 import json
