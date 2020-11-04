@@ -1,9 +1,10 @@
 # coding:utf-8
 """
-    Parser module containing the class
+    The parser module containing the Parser class. It will clean a query.
 """
-import os
 import unidecode
+
+
 class Parser:
     """
         Parser class that will clean a string by :
@@ -25,31 +26,32 @@ class Parser:
     :clarify(self, string): remove every useless word to keep the string
         as relevant as possible.
     """
-    def __init__(self, optionnal_string = ""):
+
+    def __init__(self, optionnal_string=""):
         self.string = optionnal_string
-        rawfile = open("app/static/res/stop_words.txt", 'r')
+        rawfile = open("app/static/res/stop_words.txt", "r")
         self.stop_words = [line.split(",") for line in rawfile][0]
         rawfile.close()
         self.separators = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
         self.string = self.parse(self.string)
 
-    def lower_all(self,string):
+    def lower_all(self, string):
         return string.lower()
 
     def unmark(self, string):
-        return ''.join(char for char in string if char not in self.separators)
+        return "".join(char for char in string if char not in self.separators)
 
-    def deemphasize(self,string):
+    def deemphasize(self, string):
         return unidecode.unidecode(string)
 
     def cleanup(self, string):
         listing = string.split(" ")
         listing = [word for word in listing if word not in self.stop_words]
-        return ' '.join(listing)
+        return " ".join(listing)
 
     def parse(self, string):
         """
-            This method will parse a sentence to get only meaningful words.
+        This method will parse a sentence to get only meaningful words.
         """
         string = self.lower_all(string)
         string = self.deemphasize(string)

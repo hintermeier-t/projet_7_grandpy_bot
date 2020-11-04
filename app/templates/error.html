@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <p>Oops ! Tu n'es pas sensé te trouver ici ! Veux-tu que GrandPy te raccompagne à l'entrée ?</p>
+    <p><a href="{{ url_for('index') }}">Oui</a>   |   <a href="{{ url_for('index') }}">Non</a></p>
+</div>
+{% endblock %}

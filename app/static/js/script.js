@@ -34,7 +34,7 @@ class Interface{
         +json_output.address
         +'\'" width="100%""></iframe></div><div class="BotLine">D\'ailleurs je connais tout sur cet endroit: '
         +json_output.extract+'<br><a href="'
-        +json_output.link+'">En savoir plus.</a></div>'
+        +json_output.link+'" target="_blank">En savoir plus.</a></div>'
     );
     document.getElementById('chatBox').appendChild(this.pybotLine_html);
 
